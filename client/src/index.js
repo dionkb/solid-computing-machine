@@ -1,17 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 // Below added for additional Redux code
 import { Provider } from 'react-redux';
-import configureStore from './configureStore';
+import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers } from 'redux'
+import appReducer from './reducers'
+
+const reducer = combineReducers({
+  appReducer
+})
 
 // Instantiating the store
-const store = configureStore()
+const store = configureStore({reducer})
 
 // Swapped starter React wrap for Provider with the store passed in
-ReactDOM.render(
+render(
   <Provider store={store}>
     <App />
   </Provider>,
